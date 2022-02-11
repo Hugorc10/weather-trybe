@@ -93,6 +93,10 @@ function clear() {
   marker.setMap(null);
 }
 
+function getLocalInfo(objLatLng) {
+  fetchWeather(objLatLng).then();
+  fetchGeoData(objLatLng).then();
+}
 
 function geocode(request) {
   clear();
@@ -104,7 +108,9 @@ function geocode(request) {
     marker.setMap(map);
     const objStg = JSON.stringify(results, null, 2);
     const objParse = JSON.parse(objStg);
-    findPlace(objParse)
+    findPlace(objParse);
+    console.log(objParse[0].geometry.location);
+    getLocalInfo(objParse[0].geometry.location);
     return results;
   }).catch((e) => {
     alert("Geocode was not successful for the following reason: " + e);
@@ -154,3 +160,7 @@ function deleteMarkers() {
   hideMarkers();
   markers = [];
 }
+
+window.onload = async () => {
+ await fetchGeoData(-16.4234787, -58.893106);
+};
