@@ -7,7 +7,9 @@
   <link rel="stylesheet" type="text/css" href="style.css" />
   <script src="./helpers/fetchWeather.js" defer></script>
   <script src="./helpers/fetchGeoData.js" defer></script>
-  <script src="script.js"></script>
+  <script src="./helpers/getSavedInfo.js" defer></script>
+  <script src="./helpers/saveInfoItems.js" defer></script>
+  <script src="script.js" defer></script>
 </head>
 
 <body>
@@ -22,6 +24,10 @@
   <p>Click on the map to add markers.</p>
   <p id="lat"></p>
   <p id="lon"></p>
+  <div id="info">
+    <ol id="info-list"></ol>
+    <button id="clear-places">Limpar Lugares</button>
+  </div>
 
   <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
   <!-- <script

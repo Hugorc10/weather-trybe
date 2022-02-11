@@ -5,6 +5,7 @@ let marker;
 let geocoder;
 let responseDiv;
 let response;
+const infoList = document.querySelector('#info-list');
 
 // function getLocation() {
 //   if (!navigator.geolocation) {
@@ -93,9 +94,92 @@ function clear() {
   marker.setMap(null);
 }
 
+function autoSaveItems() {
+  const items = [];
+  for (let i = 0; i < infoList.childNodes.length; i += 1) {
+    const currentItem = infoList.childNodes[i];
+    const object = {
+      type: 'div',
+      classe: currentItem.firstChild.classList[0],
+      text: currentItem.textContent,
+    };
+    items.push(object);
+  }
+  localList = JSON.stringify(items);
+  saveInfoItems(localList);
+}
+
+function createAnElement(objElement){
+  const { type, classe, text } = objElement;
+  const element = document.createElement(type);
+  element.classList.add(classe);
+  element.innerText = text;
+  return element;
+}
+
+function infoItem(objElement) {
+  const litsItem = document.createElement('li')
+  litsItem.classList.add('list-item');
+  litsItem.appendChild(createAnElement(objElement))
+  litsItem.addEventListener('dblclick', (event) => {
+    event.target.remove();
+    autoSaveItems();
+  })
+  return litsItem;
+}
+
+
+function autoGetList() {
+  console.log('entrou');
+  const previousList = getSavedInfo();
+  const list = JSON.parse(previousList)
+  list.forEach((item) => {
+    console.log(item);
+    infoList.appendChild(infoItem(item));
+    autoSaveItems();
+  });
+}
+
+
+function colorDiv(pollution) {
+  if (pollution > 0 && pollution <= 50){
+    return 'good';
+  }
+  if (pollution > 51 && pollution <= 100){
+    return 'moderate';
+  }
+  if (pollution > 101){
+    return 'unhealthy';
+  }
+}
+
+function addWeatherElements(objWeather) {
+  if (objWeather.status === 'fail') {
+    const response = {
+      type: 'div',
+      classe: 'waether_fail',
+      text: 'Infelizmente não conseguimos uma estação meteorológica próxima a esta região',
+    }
+    infoList.appendChild(infoItem(response));
+    autoSaveItems();
+  } else {
+    const weather = objWeather.data.current.weather;
+    const pollution = objWeather.data.current.pollution;
+    const response = {
+      type: 'div',
+      classe: colorDiv(pollution.aqius),
+      text: `Tempertura:  ${weather.tp}°C || Humidade: ${weather.hu}% || Poluição: ${pollution.aqius} US AQI`,
+    }
+
+    infoList.appendChild(infoItem(response));
+    autoSaveItems();
+  }
+}
+
+
 function getLocalInfo(objLatLng) {
-  fetchWeather(objLatLng).then();
-  fetchGeoData(objLatLng).then();
+  fetchWeather(objLatLng).then((result) => addWeatherElements(result));
+  // fetchGeoData(objLatLng).then((result) => addGeoDataElements(result));
 }
 
 function geocode(request) {
@@ -145,6 +229,21 @@ function findPlace(nearLocations) {
   };
 }
 
+function clearList() {
+  const clearBtn = document.getElementById('clear-places');
+  clearBtn.addEventListener('click', () => {
+    const parent = infoList;
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+  });
+  autoSaveItems()
+}
+
+clearList();
+
+autoGetList();
+
 // Shows any markers currently in the array.
 function showMarkers() {
   setMapOnAll(map);
@@ -161,6 +260,4 @@ function deleteMarkers() {
   markers = [];
 }
 
-window.onload = async () => {
- await fetchGeoData(-16.4234787, -58.893106);
-};
+

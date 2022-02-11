@@ -123,3 +123,15 @@ input[type="button"].button-secondary:hover {
   padding: 1rem;
   font-size: medium;
 }
+
+.good {
+  background-color: rgb(48, 255, 48);
+}
+
+.moderate {
+  background-color: yellow;
+}
+
+.unhealthy {
+  background-color: rgb(255, 111, 0);
+}
