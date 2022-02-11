@@ -136,7 +136,6 @@ getLocation();
 
 function findWeather(obj) {
   let myObj = obj;
-  // obj = JSON.parse();
   console.log(JSON.parse(myObj));
   //   myObj.find((JSON.parse(element)) => {
   //     return(element === responseDiv.innerText.results)
