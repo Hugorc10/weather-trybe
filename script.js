@@ -7,17 +7,18 @@ let responseDiv;
 let response;
 const infoList = document.querySelector('#info-list');
 
-// function getLocation() {
-//   if (!navigator.geolocation) {
-//     return null;
-//   }
+document.querySelector('#clear-places').addEventListener('click', () => {
+  const parent = infoList;
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    } 
+  autoSaveItems();
+});
 
-//   navigator.geolocation.getCurrentPosition((pos) => {
-//     lat = document.getElementById("lat").innerText = pos.coords.latitude;
-//     lon = document.getElementById("lon").innerText = pos.coords.longitude;
-//     initMap();
-//   });
-// }
+const previousList = getSavedInfo();
+const list = JSON.parse(previousList)
+infoList.innerHTML = list
+autoSaveItems();
 
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
@@ -45,24 +46,16 @@ function initMap() {
   clearButton.type = "button";
   clearButton.value = "Clear";
   clearButton.classList.add("button", "button-secondary");
-  response = document.createElement("pre");
-  response.id = "response";
-  response.innerText = "";
-  responseDiv = document.createElement("div");
-  responseDiv.classList.add('div-map');
-  responseDiv.id = "response-container";
-  responseDiv.appendChild(response);
 
   const instructionsElement = document.createElement("p");
 
   instructionsElement.id = "instructions";
   instructionsElement.innerHTML =
-    "<strong>Instructions</strong>: Enter an address in the textbox to geocode or click on the map to reverse geocode.";
+    "<strong>Instruções</strong>: Escreva um lugar na caixa de texto ou clique no mapa.";
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(inputText);
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(submitButton);
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(clearButton);
   map.controls[google.maps.ControlPosition.LEFT_TOP].push(instructionsElement);
-  map.controls[google.maps.ControlPosition.LEFT_TOP].push(responseDiv);
 
   marker = new google.maps.Marker({
     map,
@@ -81,11 +74,6 @@ function initMap() {
   });
 
   clear();
-  const infowindow = new google.maps.InfoWindow();
-
-  document.getElementById("submit").addEventListener("click", () => {
-    geocodeLatLng(geocoder, map, infowindow);
-  });
 }
 
 initMap();
@@ -95,16 +83,7 @@ function clear() {
 }
 
 function autoSaveItems() {
-  const items = [];
-  for (let i = 0; i < infoList.childNodes.length; i += 1) {
-    const currentItem = infoList.childNodes[i];
-    const object = {
-      type: 'div',
-      classe: currentItem.firstChild.classList[0],
-      text: currentItem.textContent,
-    };
-    items.push(object);
-  }
+  const items = infoList.innerHTML
   localList = JSON.stringify(items);
   saveInfoItems(localList);
 }
@@ -129,27 +108,18 @@ function infoItem(objElement) {
 }
 
 
-function autoGetList() {
-  console.log('entrou');
-  const previousList = getSavedInfo();
-  const list = JSON.parse(previousList)
-  list.forEach((item) => {
-    console.log(item);
-    infoList.appendChild(infoItem(item));
-    autoSaveItems();
-  });
-}
-
-
 function colorDiv(pollution) {
   if (pollution > 0 && pollution <= 50){
     return 'good';
   }
-  if (pollution > 51 && pollution <= 100){
+  if (pollution >= 51 && pollution <= 100){
     return 'moderate';
   }
-  if (pollution > 101){
+  if (pollution >= 101 && pollution <= 150){
     return 'unhealthy';
+  }
+  if (pollution >= 150){
+    return 'very_unhealthy';
   }
 }
 
@@ -157,7 +127,7 @@ function addWeatherElements(objWeather) {
   if (objWeather.status === 'fail') {
     const response = {
       type: 'div',
-      classe: 'waether_fail',
+      classe: 'weather_fail',
       text: 'Infelizmente não conseguimos uma estação meteorológica próxima a esta região',
     }
     infoList.appendChild(infoItem(response));
@@ -192,7 +162,6 @@ function geocode(request) {
     marker.setMap(map);
     const objStg = JSON.stringify(results, null, 2);
     const objParse = JSON.parse(objStg);
-    findPlace(objParse);
     console.log(objParse[0].geometry.location);
     getLocalInfo(objParse[0].geometry.location);
     return results;
@@ -200,64 +169,3 @@ function geocode(request) {
     alert("Geocode was not successful for the following reason: " + e);
   });
 }
-
-function stringContainsNumber(_string) {
-  let matchPattern =_string.match(/\d+/g);
-  if (matchPattern != null) {
-    return true
-   } else{
-    return false
-  }
-}
-
-function findPlace(nearLocations) {
-  console.log(nearLocations);
-  const nearstLocation = nearLocations[0];
-  const nextLocation = nearLocations[1];
-  if (!stringContainsNumber(nearstLocation.formatted_address[0])) {
-    const stateObj = nearstLocation.address_components.find((element) => element.types.includes('administrative_area_level_1'));
-    const getStateName = () => {
-      if (stateObj) {
-        return stateObj.long_name
-      }
-      return '';
-    };
-    const state = getStateName();
-    const countryObj = nearstLocation.address_components.find((element) => element.types.includes('country'));
-    const country = countryObj.long_name;
-    console.log(state + ', ' + country);
-  };
-}
-
-function clearList() {
-  const clearBtn = document.getElementById('clear-places');
-  clearBtn.addEventListener('click', () => {
-    const parent = infoList;
-    while (parent.firstChild) {
-        parent.removeChild(parent.firstChild);
-    }
-  });
-  autoSaveItems()
-}
-
-clearList();
-
-autoGetList();
-
-// Shows any markers currently in the array.
-function showMarkers() {
-  setMapOnAll(map);
-}
-
-// Removes the markers from the map, but keeps them in the array.
-function hideMarkers() {
-  setMapOnAll(null);
-}
-
-// Deletes all markers in the array by removing references to them.
-function deleteMarkers() {
-  hideMarkers();
-  markers = [];
-}
-
-

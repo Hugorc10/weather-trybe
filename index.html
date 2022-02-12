@@ -13,20 +13,27 @@
 </head>
 
 <body>
-  <div id="floating-panel">
-    <input id="latlng" type="text" value="40.714224,-73.961452" />
-    <input id="submit" type="button" value="Reverse Geocode" />
-    <input id="hide-markers" type="button" value="Hide Markers" />
-    <input id="show-markers" type="button" value="Show Markers" />
-    <input id="delete-markers" type="button" value="Delete Markers" />
-  </div>
   <div id="map"></div>
-  <p>Click on the map to add markers.</p>
-  <p id="lat"></p>
-  <p id="lon"></p>
   <div id="info">
-    <ol id="info-list"></ol>
-    <button id="clear-places">Limpar Lugares</button>
+    <div class="container">
+      <ol id="info-list"></ol>
+      <button id="clear-places">Limpar Lugares</button>
+    </div>
+    <div class="caption">
+      <div>Qualidade do Ar</div>
+      <div>
+        <div class="color very_unhealthy"></div> <div>Insalubre</div>
+      </div>
+      <div>
+        <div class="color unhealthy"></div> <div>Insalubre para alguns grupos</div>
+      </div>
+      <div>
+        <div class="color moderate"></div> <div>Moderado</div>
+      </div>
+      <div>
+        <div class="color good"></div> <div>Bom</div>
+      </div>
+    </div>
   </div>
 
   <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
