@@ -22,7 +22,7 @@ autoSaveItems();
 
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 2,
+    zoom: 3,
     center: { lat: 24.409102, lng: 19.856894 },
     mapTypeId: "terrain",
     mapTypeControl: false,
@@ -88,7 +88,7 @@ function autoSaveItems() {
   saveInfoItems(localList);
 }
 
-function createAnElement(objElement){
+function createAnElement(objElement) {
   const { type, classe, text } = objElement;
   const element = document.createElement(type);
   element.classList.add(classe);
@@ -96,10 +96,19 @@ function createAnElement(objElement){
   return element;
 }
 
+function createAnImg(objElement) {
+  const { img } = objElement;
+  const element = document.createElement('img');
+  element.classList.add('weather-img');
+  element.src = `./images/${img}.png`;
+  return element;
+}
+
 function infoItem(objElement) {
   const litsItem = document.createElement('li')
   litsItem.classList.add('list-item');
-  litsItem.appendChild(createAnElement(objElement))
+  litsItem.appendChild(createAnImg(objElement));
+  litsItem.appendChild(createAnElement(objElement));
   litsItem.addEventListener('dblclick', (event) => {
     event.target.remove();
     autoSaveItems();
@@ -139,8 +148,8 @@ function addWeatherElements(objWeather) {
       type: 'div',
       classe: colorDiv(pollution.aqius),
       text: `Tempertura:  ${weather.tp}°C || Humidade: ${weather.hu}% || Poluição: ${pollution.aqius} US AQI`,
+      img: weather.ic
     }
-
     infoList.appendChild(infoItem(response));
     autoSaveItems();
   }
