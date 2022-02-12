@@ -22,6 +22,5 @@ const fetchWeather = async () => {
   } catch (error) {
 
   }
-
 }
 

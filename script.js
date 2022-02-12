@@ -119,7 +119,7 @@ function geocode(request) {
     map.setCenter(results[0].geometry.location);
     marker.setPosition(results[0].geometry.location);
     marker.setMap(map);
-    responseDiv.style.display = "block";
+    // responseDiv.style.display = "block";
     response.innerText = JSON.stringify(result, null, 2);
     const obj = JSON.stringify(result, null, 2);
     findWeather(obj)
