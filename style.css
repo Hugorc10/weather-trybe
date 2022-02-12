@@ -118,44 +118,25 @@ input[type="button"].button-secondary:hover {
 .container {
   display: flex;
   flex-direction: column;
+  flex-basis: 45%;
   align-items: center;
   margin-right: 20px;
   margin-left: 10px;
-  font-size: 1.2rem;
+  font-size: 1.7rem;
+  height: 100%;
 }
 
-#info .container button {
+.container button {
   border: 0;
   border-radius: 10px;
   color: #fff;
   background-color: #1a73e8;
   margin-top: 5px;
-  width: fit-content;
+  width: 100%;
   padding: 5px;
   height: fit-content;
   align-self: flex-start;
   font-size: 1rem;
-}
-
-#info .container ol {
-  display: flex;
-  list-style: none;
-  flex-direction: column;
-  align-items: center;
-}
-
-#info .container ol li {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-
-#info .container ol li div {
-  margin-top: 8px;
-  padding: 5px;
-  width: 100%;
-  border-radius: 5px;
-  text-align: center;
 }
 
 .caption{
@@ -169,7 +150,13 @@ input[type="button"].button-secondary:hover {
 }
 
 .weather-img {
-  height: 60px;
-  width: 60px;
+  height: 300px;
+  width: 300px;
   margin-right: 5px;
+}
+
+.temp{
+  font-size: 7rem;
+  text-shadow: 1px 3px 2px grey;
+  text-align: center;
 }

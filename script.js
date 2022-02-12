@@ -5,20 +5,22 @@ let marker;
 let geocoder;
 let responseDiv;
 let response;
-const infoList = document.querySelector('#info-list');
+const container = document.querySelector('.container');
 
-document.querySelector('#clear-places').addEventListener('click', () => {
-  const parent = infoList;
-    while (parent.firstChild) {
-        parent.removeChild(parent.firstChild);
-    } 
-  autoSaveItems();
-});
+function getLocalStorage() {
+  const previousList = getSavedInfo(); 
+  const list = JSON.parse(previousList)
+  if (list === "") {
+    container.innerHTML = list
+    autoSaveItems();
+  }
+}
 
-const previousList = getSavedInfo();
-const list = JSON.parse(previousList)
-infoList.innerHTML = list
-autoSaveItems();
+function clearweatherInfo() {
+  const weatherInfo = document.querySelector('.weather-info');
+  weatherInfo.remove();
+}
+
 
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
@@ -83,37 +85,58 @@ function clear() {
 }
 
 function autoSaveItems() {
-  const items = infoList.innerHTML
+  const items = container.innerHTML
   localList = JSON.stringify(items);
   saveInfoItems(localList);
 }
 
-function createAnElement(objElement) {
-  const { type, classe, text } = objElement;
-  const element = document.createElement(type);
-  element.classList.add(classe);
-  element.innerText = text;
+function createTemp(objElement) {
+  const { temp } = objElement;
+  const element = document.createElement('div');
+  element.classList.add('temp');
+  element.innerText = temp;
   return element;
 }
 
+function createUm(objElement) {
+  const { um } = objElement;
+  const element = document.createElement('div');
+  element.classList.add('um');
+  element.innerText = um;
+  return element;
+}
+
+function createPol(objElement) {
+  const { classe, pol } = objElement;
+  const element = document.createElement('div');
+  element.classList.add(classe);
+  element.innerText = pol;
+  return element;
+}
+
+
 function createAnImg(objElement) {
   const { img } = objElement;
+  if (img === 'lupa') {
+    const element = document.createElement('img');
+    element.classList.add('weather-img');
+    element.src = `./images/lupa.png`;
+    return element;
+  }
   const element = document.createElement('img');
   element.classList.add('weather-img');
-  element.src = `./images/${img}.png`;
+  element.src = `http://openweathermap.org/img/wn/${img}@2x.png`;
   return element;
 }
 
 function infoItem(objElement) {
-  const litsItem = document.createElement('li')
-  litsItem.classList.add('list-item');
-  litsItem.appendChild(createAnImg(objElement));
-  litsItem.appendChild(createAnElement(objElement));
-  litsItem.addEventListener('dblclick', (event) => {
-    event.target.remove();
-    autoSaveItems();
-  })
-  return litsItem;
+  const weatherInfo = document.createElement('div')
+  weatherInfo.classList.add('weather-info');
+  weatherInfo.appendChild(createAnImg(objElement));
+  weatherInfo.appendChild(createTemp(objElement));
+  weatherInfo.appendChild(createUm(objElement));
+  weatherInfo.appendChild(createPol(objElement));
+  return weatherInfo;
 }
 
 
@@ -140,7 +163,7 @@ function addWeatherElements(objWeather) {
       text: 'Infelizmente não conseguimos uma estação meteorológica próxima a esta região',
       img: 'lupa'
     }
-    infoList.appendChild(infoItem(response));
+    container.appendChild(infoItem(response));
     autoSaveItems();
   } else {
     const weather = objWeather.data.current.weather;
@@ -148,10 +171,12 @@ function addWeatherElements(objWeather) {
     const response = {
       type: 'div',
       classe: colorDiv(pollution.aqius),
-      text: `Tempertura:  ${weather.tp}°C || Humidade: ${weather.hu}% || Poluição: ${pollution.aqius} US AQI`,
+      temp: `${weather.tp}°C`,
+      um: `${weather.hu}%`,
+      pol: `${pollution.aqius} US AQI`,
       img: weather.ic
     }
-    infoList.appendChild(infoItem(response));
+    container.appendChild(infoItem(response));
     autoSaveItems();
   }
 }
@@ -164,6 +189,7 @@ function getLocalInfo(objLatLng) {
 
 function geocode(request) {
   clear();
+  clearweatherInfo();
   geocoder.geocode(request).then((result) => {
     const { results } = result;
 
