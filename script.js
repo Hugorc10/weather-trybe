@@ -138,6 +138,7 @@ function addWeatherElements(objWeather) {
       type: 'div',
       classe: 'weather_fail',
       text: 'Infelizmente não conseguimos uma estação meteorológica próxima a esta região',
+      img: 'lupa'
     }
     infoList.appendChild(infoItem(response));
     autoSaveItems();
