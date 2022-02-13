@@ -18,6 +18,5 @@ const fetchWeather = async (latLng) => {
   } catch (error) {
 
   }
-
 }
 
