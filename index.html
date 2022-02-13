@@ -1,27 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 
 <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Geocoding Service</title>
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Icones de redes sociais -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
+    integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />
+  <!-- Script do Google Maps -->
   <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
   <link rel="stylesheet" type="text/css" href="style.css" />
   <script src="./helpers/fetchWeather.js" defer></script>
-  <script src="script.js"></script>
+  <script src="./helpers/fetchGeoData.js" defer></script>
+  <script src="script.js" defer></script>
 </head>
 
 <body>
-  <div id="floating-panel">
-    <input id="latlng" type="text" value="40.714224,-73.961452" />
-    <input id="submit" type="button" value="Reverse Geocode" />
-    <input id="hide-markers" type="button" value="Hide Markers" />
-    <input id="show-markers" type="button" value="Show Markers" />
-    <input id="delete-markers" type="button" value="Delete Markers" />
-  </div>
-  <div id="map"></div>
-  <p>Click on the map to add markers.</p>
-  <p id="lat"></p>
-  <p id="lon"></p>
-
+  <header>
+    <div class="header">
+      <a href="#" class="logo">
+        <img src="./images/logo.png" alt="Logo Weather Trybe">
+      </a>
+      <div class="header-right">
+        <a class="active" href="#home">Home</a>
+        <a href="#contact">Contact</a>
+        <a href="#about">About</a>
+      </div>
+    </div>
+  </header>
+  <section class="main">
+    <div id="map"></div>
+    <div id="info">
+      <div id="container-background" class="container">
+        <div class="weather-info"></div>
+        <button id="geodata-btn">Informações Geo Políticas</button>
+      </div>
+      <br>
+      <hr>
+      <br>
+      <div class="geo-container">
+        <div class="geo-info"></div>
+      </div>
+    </div>
+  </section>
+  <footer class=".footer">
+    <div class="footer-copyright">
+      © 2022 Direitos reservados à Trybe Weather
+    </div>
+    <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+  </footer>
   <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
   <!-- <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTGqcLkrceVg7fKWX93NCfh_gOGY10I_I&callback=initMap&v=weekly"

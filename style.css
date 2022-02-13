@@ -4,7 +4,6 @@
   box-sizing: border-box;
 }
 
-/* Optional: Makes the sample page fill the window. */
 html,
 body {
   height: 100%;
@@ -12,42 +11,94 @@ body {
   padding: 0;
 }
 
-#floating-panel {
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  z-index: 2;
+  background-color: #f1f1f1;
+  left: 0;
+  width: 100%;
+  padding: 10px 10px;
+}
+
+.logo img {
+  color: black;
+  text-align: center;
+  padding: 0px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+.header-right a {
+  color: black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+/* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
+.header a.logo {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+/* Change the background color on mouse-over */
+.header-right a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Style the active/current link*/
+.header a.active {
+  background-color: dodgerblue;
+  color: white;
+}
+
+/* Float the link section to the right */
+.header-right {
+  float: right;
+}
+
+/* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
+@media screen and (max-width: 500px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .header-right {
+    float: none;
+  }
+}
+
+.main {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  position: absolute;
-  top: 10px;
-  /* left: 25%; */
-  z-index: 5;
-  background-color: #fff;
-  padding: 5px;
-  border: 1px solid #999;
-  text-align: center;
-  font-family: "Roboto", "sans-serif";
-  line-height: 30px;
-  padding-left: 10px;
-}
-
-#floating-panel {
-  position: absolute;
-  top: 5px;
-  left: 50%;
-  margin-left: 50px;
-  width: 350px;
-  z-index: 5;
-  background-color: #fff;
-  padding: 5px;
-  border: 1px solid #999;
-}
-
-#latlng {
-  width: 225px;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 22px;
 }
 
 #map {
-  height: 50%;
-  width: 50%;
+  width: 60%;
+  border-radius: 20px;
+  margin-top: 79px;
+  height: 90%;
 }
 
 input[type="text"] {
@@ -77,38 +128,27 @@ input[type="button"] {
   cursor: pointer;
   margin-left: 5px;
 }
+
 input[type="button"]:hover {
   background: #ebebeb;
 }
+
 input[type="button"].button-primary {
   background-color: #1a73e8;
   color: white;
 }
+
 input[type="button"].button-primary:hover {
   background-color: #1765cc;
 }
+
 input[type="button"].button-secondary {
   background-color: white;
   color: #1a73e8;
 }
+
 input[type="button"].button-secondary:hover {
   background-color: #d2e3fc;
-}
-
-#response-container {
-  background-color: #fff;
-  border: 0;
-  border-radius: 2px;
-  box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
-  margin: 10px;
-  padding: 0 0.5em;
-  font: 400 18px Roboto, Arial, sans-serif;
-  overflow: hidden;
-  overflow: auto;
-  max-height: 50%;
-  max-width: 90%;
-  background-color: rgba(255, 255, 255, 0.95);
-  font-size: small;
 }
 
 #instructions {
@@ -122,4 +162,209 @@ input[type="button"].button-secondary:hover {
   overflow: hidden;
   padding: 1rem;
   font-size: medium;
+}
+
+.good {
+  background-color: rgb(48, 255, 48);
+  border-radius: 10px;
+  width: fit-content;
+  padding: 5px;
+}
+
+.moderate {
+  background-color: yellow;
+  border-radius: 10px;
+  width: fit-content;
+  padding: 5px;
+}
+
+.unhealthy {
+  background-color: rgb(255, 111, 0);
+  border-radius: 10px;
+  width: fit-content;
+  padding: 5px;
+}
+
+.very_unhealthy {
+  background-color: red;
+  border-radius: 10px;
+  width: fit-content;
+  padding: 5px;
+}
+
+.color {
+  height: 10px;
+  width: 10px;
+  border-radius: 100%;
+}
+
+.error {
+  color: #fff;
+  background-color: #5a86c0;
+  border-radius: 10px;
+  padding: 5px;
+  box-shadow: 5px 3px 2px white;
+}
+
+#info {
+  display: flex;
+  flex-direction: column;
+  margin-top: 79px;
+  width: 495px;
+}
+
+#container-background {
+  display: none;
+  flex-direction: column;
+  flex-basis: 45%;
+  align-items: center;
+  margin-right: 10px;
+  margin-left: 10px;
+  font-size: 1.7rem;
+  height: fit-content;
+  background-color: rgba(241, 241, 241, 0.2);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.weather-img {
+  height: 250px;
+  width: 250px;
+  /* border: 1px solid black; */
+  opacity: 1;
+  /* margin-right: 5px; */
+}
+
+.weather-info div img{
+  height: 30px;
+  width: 30px;
+  /* opacity: 1; */
+}
+
+.container button:nth-child(1){
+  order: 5;
+}
+
+.container button {
+  border-radius: 10px;
+  align-items: center;
+  color: #fff;
+  background-color: #4284da;
+  /* background-color: transparent; */
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  font-weight: 700;
+  border: 2px solid #1e56ce;
+  width: 50%;
+  padding: 5px;
+  height: fit-content;
+  font-size: 1rem;
+  cursor: pointer;
+  /* display: none; */
+}
+
+.container button:hover, .container button:focus {
+  color: #fff;
+  outline: 0;
+}
+
+#geodata-btn {
+  -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+  transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+#geodata-btn:hover {
+  box-shadow: 0 0 40px 40px #1e56ce inset;
+}
+
+.container div {
+  margin-bottom: 16px;
+}
+
+.weather-info {
+  display: flex;
+  flex-direction: column;
+  opacity: 1;
+  align-items: center;
+}
+
+.caption {
+  font-size: 1.2rem;
+  margin-top: 8px;
+}
+
+.caption div {
+  display: flex;
+  align-items: center;
+}
+
+.temp {
+  font-size: 7rem;
+  text-shadow: 2px 3px 2px grey;
+  text-align: center;
+  /* background-color: #ffffff; */
+  /* box-shadow: 5px 5px 4px #d2e3fc; */
+}
+
+.geo-container {
+  display: none;
+  flex-direction: column;
+  flex-basis: 45%;
+  align-items: center;
+  margin-right: 20px;
+  margin-left: 10px;
+  font-size: 1.7rem;
+  height: fit-content;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.geo-container div {
+  margin-bottom: 16px;
+}
+
+.geo-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.geo-info div {
+  display: flex;
+  width: fit-content;
+  padding: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.geo-info div img{
+  width: 30px;
+  margin-left: 5px;
+}
+
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  /* position: absolute; */
+  display: flex;
+  /* flex-basis: 10%; */
+  height: 50px;
+  background-color: #191C03;
+  justify-content: space-between;
+  /* padding: 100px 50px; */
+  color: white;
+  align-items: center;
+}
+
+footer div {
+  margin-left: 16px;
+}
+
+footer a i {
+  font-size: 30px;
+  margin-right: 16px;
 }
