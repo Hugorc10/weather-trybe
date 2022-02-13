@@ -117,14 +117,18 @@ input[type="button"].button-secondary:hover {
   border-radius: 100%;
 }
 
-.weather_fail {
+.error {
   color: #fff;
-  background-color: #1765cc;
+  background-color: #5a86c0;
+  border-radius: 10px;
+  padding: 5px;
+  box-shadow: 5px 3px 2px white;
 }
 
 #info {
   display: flex;
   flex-direction: column;
+  width: 495px;
 }
 
 .container {
@@ -132,7 +136,7 @@ input[type="button"].button-secondary:hover {
   flex-direction: column;
   flex-basis: 45%;
   align-items: center;
-  margin-right: 20px;
+  margin-right: 10px;
   margin-left: 10px;
   font-size: 1.7rem;
   height: fit-content;
@@ -228,6 +232,8 @@ input[type="button"].button-secondary:hover {
 
 .geo-info div {
   display: flex;
+  width: fit-content;
+  padding: 5px;
   align-items: center;
   justify-content: center;
 }

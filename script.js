@@ -138,10 +138,10 @@ function createPol(objElement) {
 
 function createAnImg(objElement) {
   const { img } = objElement;
-  if (img === 'lupa') {
+  if (img === 'unknown') {
     const element = document.createElement('img');
     element.classList.add('weather-img');
-    element.src = `./images/lupa.png`;
+    element.src = `./images/unknown.png`;
     return element;
   }
   const element = document.createElement('img');
@@ -150,9 +150,23 @@ function createAnImg(objElement) {
   return element;
 }
 
+function createText(objElement) {
+  const { classe, text } = objElement;
+  const element = document.createElement('div');
+  element.classList.add(classe);
+  element.innerText = text;
+  element.appendChild(getIcon('lupa'))
+  return element;
+}
+
 function infoItem(objElement) {
   const weatherInfo = document.createElement('div')
   weatherInfo.classList.add('weather-info');
+  if (objElement.text){
+    weatherInfo.appendChild(createAnImg(objElement))
+    weatherInfo.appendChild(createText(objElement))
+    return weatherInfo;
+  }
   weatherInfo.appendChild(createAnImg(objElement));
   weatherInfo.appendChild(createTemp(objElement));
   weatherInfo.appendChild(createUm(objElement));
@@ -179,11 +193,13 @@ function colorDiv(pollution) {
 function addWeatherElements(objWeather) {
   if (objWeather.status === 'fail') {
     const response = {
-      classe: 'weather_fail',
+      classe: 'error',
       text: 'Infelizmente não conseguimos uma estação meteorológica próxima a esta região',
-      img: 'lupa'
+      img: 'unknown'
     }
     container.appendChild(infoItem(response));
+    const geoBtn = document.querySelector('#geodata-btn');
+    geoBtn.style.display = 'block';
     // autoSaveItems();
   } else {
     const weather = objWeather.data.current.weather;
@@ -212,10 +228,10 @@ function createLocation(objElement) {
 }
 
 function createCurrency(objElement) {
-  const { cc, cs } = objElement;
+  const { cc } = objElement;
   const element = document.createElement('div');
   element.classList.add('currency');
-  element.innerText = `${cc} || ${cs}`;
+  element.innerText = `${cc}`;
   element.appendChild(getIcon('coin'));
   return element;
 }
@@ -243,6 +259,10 @@ function createTz(objElement) {
 function dataItem(objInfos) {
   const geoInfo = document.createElement('div');
   geoInfo.classList.add('geo-info');
+  if (objInfos.text) {
+    geoInfo.appendChild(createText(objInfos));
+    return geoInfo;
+  }
   geoInfo.appendChild(createLocation(objInfos));
   geoInfo.appendChild(createCurrency(objInfos));
   geoInfo.appendChild(createSun(objInfos));
@@ -253,14 +273,17 @@ function dataItem(objInfos) {
 function addGeoDataElements(objGeoData) {
   const { country, region, city, currency_code, currency_symbol, sunrise, sunset, time_zone, error } = objGeoData
   if (error) {
-
+    const response = {
+      classe: 'error',
+      text: 'Não conseguimos encontrar informações sobre este local',
+    }
+    geoContainer.appendChild(dataItem(response));
   } else {
     const response = {
       cnt: country,
       rg: region,
       ct: city,
       cc: currency_code,
-      cs: currency_symbol,
       sr: sunrise,
       ss: sunset,
       tz: time_zone,
