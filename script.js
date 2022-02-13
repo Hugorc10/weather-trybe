@@ -23,16 +23,6 @@ geoBtn.addEventListener('click', () => {
   }
 })
 
-// function getLocalStorage() {
-//   const previousList = getSavedInfo();
-//   // const list = JSON.parse(previousList)
-//   // console.log(list);
-//   container.innerHTML = previousList;
-//   autoSaveItems();
-// }
-
-// getLocalStorage();
-
 function clearweatherInfo() {
   const weatherInfo = document.querySelector('.weather-info');
   const geoInfo = document.querySelector('.geo-info');
@@ -48,7 +38,6 @@ function getLocation() {
   navigator.geolocation.getCurrentPosition((pos) => {
     lat = pos.coords.latitude;
     lon = pos.coords.longitude;
-    // initMap();
     const obj = {
       lat: lat,
       lng: lon,
@@ -118,13 +107,6 @@ function clear() {
 }
 
 initMap();
-
-// function autoSaveItems() {
-//   const items = container.innerHTML
-//   // localList = JSON.stringify(items);
-//   saveInfoItems(items);
-//   console.log(getSavedInfo());
-// }
 
 function getIcon(infoType) {
   const element = document.createElement('img');
@@ -223,7 +205,6 @@ function addWeatherElements(objWeather) {
     container.appendChild(infoItem(response));
     const geoBtn = document.querySelector('#geodata-btn');
     geoBtn.style.display = 'block';
-    // autoSaveItems();
   } else {
     const weather = objWeather.data.current.weather;
     const pollution = objWeather.data.current.pollution;
@@ -237,7 +218,6 @@ function addWeatherElements(objWeather) {
     container.appendChild(infoItem(response));
     const geoBtn = document.querySelector('#geodata-btn');
     geoBtn.style.display = 'block';
-    // autoSaveItems();
   }
 }
 
