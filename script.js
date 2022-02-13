@@ -10,8 +10,19 @@ const geoContainer = document.querySelector('.geo-container');
 const geoBtn = document.querySelector('#geodata-btn');
 
 geoBtn.addEventListener('click', () => {
-  geoContainer.style.display = 'flex';
+  let click = false;
+  if (geoContainer.style.display === 'none') {
+    click = false
+  } else {
+    click = true;
+  }
+  if (!click) {
+    geoContainer.style.display = 'flex';
+  } else {
+    geoContainer.style.display = 'none';
+  }
 })
+
 // function getLocalStorage() {
 //   const previousList = getSavedInfo();
 //   // const list = JSON.parse(previousList)
@@ -21,8 +32,6 @@ geoBtn.addEventListener('click', () => {
 // }
 
 // getLocalStorage();
-
-
 
 function clearweatherInfo() {
   const weatherInfo = document.querySelector('.weather-info');
@@ -252,8 +261,6 @@ function createTz(objElement) {
   return element;
 }
 
-
-
 function dataItem(objInfos) {
   const geoInfo = document.createElement('div');
   geoInfo.classList.add('geo-info');
@@ -289,25 +296,6 @@ function addGeoDataElements(objGeoData) {
     geoContainer.appendChild(dataItem(response));
   }
 }
-
-// function makeRegionInfos(objInfos) {
-//   const { country, region, city, currency_code, currency_symbol, sunrise, sunset, time_zone } = objInfos;
-//   const arrayInfo = [];
-//   const unorList = document.createElement('ul');
-//   unorList.id = 'region-info';
-//   arrayInfo.push(country);
-//   arrayInfo.push(region);
-//   arrayInfo.push(city);
-//   arrayInfo.push(currency_code);
-//   arrayInfo.push(currency_symbol);
-//   arrayInfo.push(sunrise);
-//   arrayInfo.push(sunset);
-//   arrayInfo.push(time_zone);
-//   const arrayNode = makeNodes(arrayInfo);
-//   arrayNode.forEach((element) => unorList.appendChild(element));
-//   return unorList;
-// }
-
 
 function getLocalInfo(objLatLng) {
   fetchWeather(objLatLng).then((result) => addWeatherElements(result));

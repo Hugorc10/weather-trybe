@@ -4,7 +4,6 @@
   box-sizing: border-box;
 }
 
-/* Optional: Makes the sample page fill the window. */
 html,
 body {
   height: 100%;
@@ -16,18 +15,94 @@ body {
   /* margin: 10px; */
   display: flex;
   /* margin-top: 10px; */
-  flex-direction: row;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-/* main {
-  flex: 1 0 auto;
-} */
+.header {
+  /* overflow: hidden; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  z-index: 2;
+  background-color: #f1f1f1;
+  left: 0;
+  width: 100%;
+  padding: 10px 10px;
+}
+
+.logo img {
+  color: black;
+  text-align: center;
+  padding: 0px;
+  /* padding: 12px; */
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+.header-right a {
+  color: black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+/* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
+.header a.logo {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+/* Change the background color on mouse-over */
+.header-right a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Style the active/current link*/
+.header a.active {
+  background-color: dodgerblue;
+  color: white;
+}
+
+/* Float the link section to the right */
+.header-right {
+  float: right;
+}
+
+/* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
+@media screen and (max-width: 500px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .header-right {
+    float: none;
+  }
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 22px;
+}
 
 #map {
   width: 60%;
   border-radius: 20px;
-  height: 97%;
+  margin-top: 79px;
+  height: 90%;
 }
 
 input[type="text"] {
@@ -57,20 +132,25 @@ input[type="button"] {
   cursor: pointer;
   margin-left: 5px;
 }
+
 input[type="button"]:hover {
   background: #ebebeb;
 }
+
 input[type="button"].button-primary {
   background-color: #1a73e8;
   color: white;
 }
+
 input[type="button"].button-primary:hover {
   background-color: #1765cc;
 }
+
 input[type="button"].button-secondary {
   background-color: white;
   color: #1a73e8;
 }
+
 input[type="button"].button-secondary:hover {
   background-color: #d2e3fc;
 }
@@ -133,6 +213,7 @@ input[type="button"].button-secondary:hover {
 #info {
   display: flex;
   flex-direction: column;
+  margin-top: 79px;
   width: 495px;
 }
 
@@ -145,10 +226,26 @@ input[type="button"].button-secondary:hover {
   margin-left: 10px;
   font-size: 1.7rem;
   height: fit-content;
-  background-color: rgba(192, 191, 191, 0.1);
+  background-color: rgba(241, 241, 241, 0.2);
+  /* background-color: #f1f1f1; */
+  /* background-color: #f1f1f1; */
   /* opacity: 0.3; */
   padding: 10px;
   border-radius: 10px;
+}
+
+.weather-img {
+  height: 250px;
+  width: 250px;
+  /* border: 1px solid black; */
+  opacity: 1;
+  /* margin-right: 5px; */
+}
+
+.weather-info div img{
+  height: 30px;
+  width: 30px;
+  /* opacity: 1; */
 }
 
 .container button:nth-child(1){
@@ -205,12 +302,6 @@ input[type="button"].button-secondary:hover {
   justify-content: center;
 } */
 
-.weather-info div img{
-  height: 30px;
-  width: 30px;
-  opacity: 1;
-}
-
 .caption {
   font-size: 1.2rem;
   margin-top: 8px;
@@ -221,11 +312,7 @@ input[type="button"].button-secondary:hover {
   align-items: center;
 }
 
-.weather-img {
-  height: 250px;
-  width: 250px;
-  margin-right: 5px;
-}
+
 
 .temp {
   font-size: 7rem;
@@ -271,7 +358,7 @@ input[type="button"].button-secondary:hover {
   margin-left: 5px;
 }
 
-footer {
+/* footer {
   position: fixed;
   left: 0;
   bottom: 0;
@@ -280,6 +367,30 @@ footer {
   color: white;
   height: 50px;
   text-align: center;
+} */
+
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
 }
 
+footer {
+  /* position: absolute; */
+  display: flex;
+  /* flex-basis: 10%; */
+  height: 50px;
+  background-color: #191C03;
+  justify-content: space-between;
+  /* padding: 100px 50px; */
+  color: white;
+  align-items: center;
+}
 
+footer div {
+  margin-left: 16px;
+}
+
+footer a i {
+  font-size: 30px;
+  margin-right: 16px;
+}
