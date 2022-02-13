@@ -8,13 +8,14 @@ let response;
 const container = document.querySelector('.container');
 
 function getLocalStorage() {
-  const previousList = getSavedInfo(); 
-  const list = JSON.parse(previousList)
-  if (list === "") {
-    container.innerHTML = list
-    autoSaveItems();
-  }
+  const previousList = getSavedInfo();
+  // const list = JSON.parse(previousList)
+  // console.log(list);
+  container.innerHTML = previousList;
+  autoSaveItems();
 }
+
+getLocalStorage();
 
 function clearweatherInfo() {
   const weatherInfo = document.querySelector('.weather-info');
@@ -86,8 +87,9 @@ function clear() {
 
 function autoSaveItems() {
   const items = container.innerHTML
-  localList = JSON.stringify(items);
-  saveInfoItems(localList);
+  // localList = JSON.stringify(items);
+  saveInfoItems(items);
+  console.log(getSavedInfo());
 }
 
 function createTemp(objElement) {
@@ -141,16 +143,16 @@ function infoItem(objElement) {
 
 
 function colorDiv(pollution) {
-  if (pollution > 0 && pollution <= 50){
+  if (pollution > 0 && pollution <= 50) {
     return 'good';
   }
-  if (pollution >= 51 && pollution <= 100){
+  if (pollution >= 51 && pollution <= 100) {
     return 'moderate';
   }
-  if (pollution >= 101 && pollution <= 150){
+  if (pollution >= 101 && pollution <= 150) {
     return 'unhealthy';
   }
-  if (pollution >= 150){
+  if (pollution >= 150) {
     return 'very_unhealthy';
   }
 }
@@ -204,4 +206,8 @@ function geocode(request) {
   }).catch((e) => {
     alert("Geocode was not successful for the following reason: " + e);
   });
+}
+
+window.onload = () => {
+
 }
