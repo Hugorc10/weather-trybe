@@ -41,6 +41,22 @@ function clearweatherInfo() {
   geoContainer.style.display = 'none';
 }
 
+function getLocation() {
+  if (!navigator.geolocation) {
+    return null;
+  }
+  navigator.geolocation.getCurrentPosition((pos) => {
+    lat = pos.coords.latitude;
+    lon = pos.coords.longitude;
+    // initMap();
+    const obj = {
+      lat: lat,
+      lng: lon,
+    }
+    geocode({ location: obj });
+  });
+}
+
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 3,
@@ -94,14 +110,14 @@ function initMap() {
     clear();
   });
 
-  clear();
+  getLocation();
 }
-
-initMap();
 
 function clear() {
   marker.setMap(null);
 }
+
+initMap();
 
 // function autoSaveItems() {
 //   const items = container.innerHTML
