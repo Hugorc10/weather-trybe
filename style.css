@@ -85,18 +85,30 @@ input[type="button"].button-secondary:hover {
 
 .good {
   background-color: rgb(48, 255, 48);
+  border-radius: 10px;
+  width: fit-content;
+  padding: 5px;
 }
 
 .moderate {
   background-color: yellow;
+  border-radius: 10px;
+  width: fit-content;
+  padding: 5px;
 }
 
 .unhealthy {
   background-color: rgb(255, 111, 0);
+  border-radius: 10px;
+  width: fit-content;
+  padding: 5px;
 }
 
 .very_unhealthy {
   background-color: red;
+  border-radius: 10px;
+  width: fit-content;
+  padding: 5px;
 }
 
 .color {
@@ -112,18 +124,25 @@ input[type="button"].button-secondary:hover {
 
 #info {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 .container {
-  display: flex;
+  display: none;
   flex-direction: column;
   flex-basis: 45%;
   align-items: center;
   margin-right: 20px;
   margin-left: 10px;
   font-size: 1.7rem;
-  height: 100%;
+  height: fit-content;
+  background-color: rgb(192, 191, 191);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.container button:nth-child(1){
+  order: 5;
 }
 
 .container button {
@@ -131,12 +150,33 @@ input[type="button"].button-secondary:hover {
   border-radius: 10px;
   color: #fff;
   background-color: #1a73e8;
-  margin-top: 5px;
   width: 100%;
   padding: 5px;
   height: fit-content;
   align-self: flex-start;
   font-size: 1rem;
+  display: none;
+}
+
+.container div {
+  margin-bottom: 16px;
+}
+
+.weather-info{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.weather-info div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.weather-info div img{
+  height: 30px;
+  width: 30px;
 }
 
 .caption{
@@ -150,13 +190,49 @@ input[type="button"].button-secondary:hover {
 }
 
 .weather-img {
-  height: 300px;
-  width: 300px;
+  height: 250px;
+  width: 250px;
   margin-right: 5px;
 }
 
 .temp{
   font-size: 7rem;
-  text-shadow: 1px 3px 2px grey;
+  text-shadow: 2px 3px 2px grey;
   text-align: center;
+  background-color: #ffffff;
+  box-shadow: 5px 5px 4px #d2e3fc;
+}
+
+.geo-container {
+  display: none;
+  flex-direction: column;
+  flex-basis: 45%;
+  align-items: center;
+  margin-right: 20px;
+  margin-left: 10px;
+  font-size: 1.7rem;
+  height: fit-content;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.geo-container div {
+  margin-bottom: 16px;
+}
+
+.geo-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.geo-info div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.geo-info div img{
+  width: 30px;
+  margin-left: 5px;
 }
