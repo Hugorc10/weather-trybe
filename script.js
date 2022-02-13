@@ -32,7 +32,6 @@ function clearweatherInfo() {
   geoContainer.style.display = 'none';
 }
 
-
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 3,
@@ -46,18 +45,18 @@ function initMap() {
   const inputText = document.createElement("input");
 
   inputText.type = "text";
-  inputText.placeholder = "Enter a location";
+  inputText.placeholder = "Entre uma localização";
 
   const submitButton = document.createElement("input");
 
   submitButton.type = "button";
-  submitButton.value = "Geocode";
+  submitButton.value = "Procurar";
   submitButton.classList.add("button", "button-primary");
 
   const clearButton = document.createElement("input");
 
   clearButton.type = "button";
-  clearButton.value = "Clear";
+  clearButton.value = "Limpar";
   clearButton.classList.add("button", "button-secondary");
 
   const instructionsElement = document.createElement("p");
@@ -135,7 +134,6 @@ function createPol(objElement) {
   return element;
 }
 
-
 function createAnImg(objElement) {
   const { img } = objElement;
   if (img === 'unknown') {
@@ -162,7 +160,7 @@ function createText(objElement) {
 function infoItem(objElement) {
   const weatherInfo = document.createElement('div')
   weatherInfo.classList.add('weather-info');
-  if (objElement.text){
+  if (objElement.text) {
     weatherInfo.appendChild(createAnImg(objElement))
     weatherInfo.appendChild(createText(objElement))
     return weatherInfo;

@@ -13,11 +13,16 @@ body {
 }
 
 body {
-  margin: 10px;
+  /* margin: 10px; */
   display: flex;
+  /* margin-top: 10px; */
   flex-direction: row;
   justify-content: space-around;
 }
+
+/* main {
+  flex: 1 0 auto;
+} */
 
 #map {
   width: 60%;
@@ -131,7 +136,7 @@ input[type="button"].button-secondary:hover {
   width: 495px;
 }
 
-.container {
+#container-background {
   display: none;
   flex-direction: column;
   flex-basis: 45%;
@@ -140,7 +145,8 @@ input[type="button"].button-secondary:hover {
   margin-left: 10px;
   font-size: 1.7rem;
   height: fit-content;
-  background-color: rgb(192, 191, 191);
+  background-color: rgba(192, 191, 191, 0.1);
+  /* opacity: 0.3; */
   padding: 10px;
   border-radius: 10px;
 }
@@ -150,40 +156,62 @@ input[type="button"].button-secondary:hover {
 }
 
 .container button {
-  border: 0;
   border-radius: 10px;
+  align-items: center;
   color: #fff;
-  background-color: #1a73e8;
-  width: 100%;
+  background-color: #4284da;
+  /* background-color: transparent; */
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  font-weight: 700;
+  border: 2px solid #1e56ce;
+  width: 50%;
   padding: 5px;
   height: fit-content;
-  align-self: flex-start;
   font-size: 1rem;
-  display: none;
+  cursor: pointer;
+  /* display: none; */
+}
+
+.container button:hover, .container button:focus {
+  color: #fff;
+  outline: 0;
+}
+
+#geodata-btn {
+  -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+  transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+#geodata-btn:hover {
+  box-shadow: 0 0 40px 40px #1e56ce inset;
 }
 
 .container div {
   margin-bottom: 16px;
 }
 
-.weather-info{
+.weather-info {
   display: flex;
   flex-direction: column;
+  opacity: 1;
   align-items: center;
 }
 
-.weather-info div {
+/* .weather-info div {
   display: flex;
   align-items: center;
   justify-content: center;
-}
+} */
 
 .weather-info div img{
   height: 30px;
   width: 30px;
+  opacity: 1;
 }
 
-.caption{
+.caption {
   font-size: 1.2rem;
   margin-top: 8px;
 }
@@ -199,12 +227,12 @@ input[type="button"].button-secondary:hover {
   margin-right: 5px;
 }
 
-.temp{
+.temp {
   font-size: 7rem;
   text-shadow: 2px 3px 2px grey;
   text-align: center;
-  background-color: #ffffff;
-  box-shadow: 5px 5px 4px #d2e3fc;
+  /* background-color: #ffffff; */
+  /* box-shadow: 5px 5px 4px #d2e3fc; */
 }
 
 .geo-container {
@@ -242,3 +270,16 @@ input[type="button"].button-secondary:hover {
   width: 30px;
   margin-left: 5px;
 }
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #1a73e8;
+  color: white;
+  height: 50px;
+  text-align: center;
+}
+
+
