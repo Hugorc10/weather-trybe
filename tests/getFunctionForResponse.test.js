@@ -1,6 +1,7 @@
 /**
  * @jest-environment jsdom
  */
+
 const getFunctionForResponse = require('../helpers/getFunctionForResponse');
 
 describe('1 - Testa a função "getFunctionForResponse"', () => {
@@ -10,5 +11,9 @@ describe('1 - Testa a função "getFunctionForResponse"', () => {
     it('Verifica se uma função é retornada dentro de "getFunctionForResponse"', () => {
         expect(typeof getFunctionForResponse(1)).toBe('function');
         expect(typeof getFunctionForResponse(2)).toBe('function');
+    });
+    it('Verifica se appendChild é chamada dentro da função', () => {
+        const response1 = getFunctionForResponse(1);
+        expect(response1).toBeCalled();
     });
 });

@@ -25,10 +25,10 @@ function getFunctionForResponse(which) {
                 ss: sunset,
                 tz: time_zone,
               }
-              geoContainer.appendChild(dataItem(response));
+              return response;
             }
         };
     };
-  }
+}
 
 module.exports = getFunctionForResponse;

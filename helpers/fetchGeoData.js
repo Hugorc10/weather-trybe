@@ -1,3 +1,4 @@
+const fetch = require('node-fetch');
 async function fetchGeoData(latLng) {
     const { lat, lng } = latLng;
     const key = 'QZ0DTOXXJEJTFUGKC0NJGV2YWU929X9P';
@@ -6,3 +7,5 @@ async function fetchGeoData(latLng) {
     console.log(APIObject);
     return APIObject;
 }
+
+module.exports = fetchGeoData;
