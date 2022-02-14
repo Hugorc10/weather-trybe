@@ -271,26 +271,45 @@ function dataItem(objInfos) {
   return geoInfo;
 }
 
-function addGeoDataElements(objGeoData) {
-  const { country, region, city, currency_code, currency_symbol, sunrise, sunset, time_zone, error } = objGeoData
-  if (error) {
-    const response = {
-      classe: 'error',
-      text: 'Não conseguimos encontrar informações sobre este local',
-    }
-    geoContainer.appendChild(dataItem(response));
-  } else {
-    const response = {
-      cnt: country,
-      rg: region,
-      ct: city,
-      cc: currency_code,
-      sr: sunrise,
-      ss: sunset,
-      tz: time_zone,
-    }
-    geoContainer.appendChild(dataItem(response));
+function getFunctionForResponse(which) {
+  switch(which) {
+    case 1:
+      return function(objGeoData) {
+        const { error } = objGeoData;
+        if (error) {
+          const response = {
+            classe: 'error',
+            text: 'Não conseguimos encontrar informações sobre este local',
+          };
+          geoContainer.appendChild(dataItem(response));
+        }
+      }
+      break;
+    case 2:
+      return function(objGeoData) {
+        const { country, region, city, currency_code, sunrise, sunset, time_zone, error } = objGeoData;
+        if (!error) {
+          const response = {
+            cnt: country,
+            rg: region,
+            ct: city,
+            cc: currency_code,
+            sr: sunrise,
+            ss: sunset,
+            tz: time_zone,
+          }
+          geoContainer.appendChild(dataItem(response));
+        }
+      }
   }
+}
+
+function addGeoDataElements(objGeoData) {
+  const showError = getFunctionForResponse(1);
+  showError(objGeoData);
+
+  const showRightResponse = getFunctionForResponse(2);
+  showRightResponse(objGeoData);
 }
 
 function getLocalInfo(objLatLng) {
@@ -317,3 +336,5 @@ function geocode(request) {
     alert("Geocode was not successful for the following reason: " + e);
   });
 }
+
+module.exports = getLocalInfo;

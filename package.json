@@ -1,0 +1,26 @@
+{
+  "name": "weather-trybe",
+  "version": "1.0.0",
+  "description": "Projeto bônus feito com a API do Google Maps e AirVisual",
+  "main": "script.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hugorc10/weather-trybe.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hugorc10/weather-trybe/issues"
+  },
+  "homepage": "https://github.com/Hugorc10/weather-trybe#readme",
+  "devDependencies": {
+    "jest": "^27.5.1"
+  }
+}
