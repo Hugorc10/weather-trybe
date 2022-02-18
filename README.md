@@ -1,4 +1,4 @@
-![Logo Gif](./logoGif.gif)
+<p align="center"><img src="./logoGif.gif" alt="Weather trybe logo"></p>
 
 Este projeto é um projeto bonus realizado por alunos da Trybe, o intuito do projeto era promover conhecimento sobre requisição em API's e funções Asíncronas!
 
@@ -6,8 +6,10 @@ Tivemos a ideia de fazer um site que pudesse entregar informações em tempo rea
 
 Aqui você vai encontrar os detalhes sobre o desenvolvimento do projeto, habilidades envolvidas no desenvolvimento e lições aprendidas durante o processo
 
-# Weather.trybe
-![Project Working Gif](./working.gif)
+---
+
+<p align="center"><img src="./working.gif" alt="web site working"></p>
+
 
 ---
 
