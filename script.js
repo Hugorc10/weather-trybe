@@ -272,7 +272,7 @@ function dataItem(objInfos) {
 }
 
 function addGeoDataElements(objGeoData) {
-  const { country, region, city, currency_code, currency_symbol, sunrise, sunset, time_zone, error } = objGeoData
+  const { country, region, city, currency_code, sunrise, sunset, time_zone, error } = objGeoData
   if (error) {
     const response = {
       classe: 'error',

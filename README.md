@@ -1,9 +1,14 @@
-# Weather.trybe
+![Logo Gif](./logoGif.gif)
+
 Este projeto é um projeto bonus realizado por alunos da Trybe, o intuito do projeto era promover conhecimento sobre requisição em API's e funções Asíncronas!
 
-Tivemos a ideia de fazer um site que pudesse entregar informações em tempo real sobre o clima e informações que ajudassem a região, facilitando uma viajem, por exemplo. 
+Tivemos a ideia de fazer um site que pudesse entregar informações em tempo real sobre o clima e informações que ajudassem a região, facilitando uma viajem, por exemplo.
 
-Aqui você vai encontrar os detalhes sobre o desenvolvimento do projeto, habilidades envolvidas no desenvolvimento e lições aprendidas durante o processo.
+Aqui você vai encontrar os detalhes sobre o desenvolvimento do projeto, habilidades envolvidas no desenvolvimento e lições aprendidas durante o processo
+
+# Weather.trybe
+![Project Working Gif](./working.gif)
+
 ---
 
 ## SUMÁRIO
@@ -21,20 +26,23 @@ Aqui você vai encontrar os detalhes sobre o desenvolvimento do projeto, habilid
 
 ## Habilidades
 
-### Hard Skills:
+### Hard Skills
+
 - Fazer requisições a uma API *(Application Programming Interface)* do Mercado Livre;
 - Utilizar conhecimentos sobre JavaScript, CSS e HTML;
 - Trabalhar com funções assíncronas;
 - Implementar testes unitários
 
-### Soft Skills:
+### Soft Skills
+
 - Negociação
 - Escuta Ativa
 - Comunicação Acertiva
 
 ---
 
-## Objetivos:
+## Objetivos
+
 - Entregar informações em tempo real sobre o clima.
 - Entregar informações geopolíticas que ajudem a entender o local.
 - Fácil interação do usuário com o sistema de busca.
@@ -46,6 +54,7 @@ Aqui você vai encontrar os detalhes sobre o desenvolvimento do projeto, habilid
 ### Escolha das API's
 
 Escolhemos as API's e plataformas de acordo com os nosso objetivos iniciais então escolhemos:
+
 - Google Maps Plataform : Disponibiliza um mapa na tela e retorna informações sobre os locais pesquisados ou clicados, além de ser muito intuitiva para a pessoa usuária;
 - IQAir : Conseguir informações sobre o clima em tempo real;
 - GeoDataSource : Conseguimos informações geopolíticas.
@@ -62,9 +71,8 @@ Escolhemos as API's e plataformas de acordo com os nosso objetivos iniciais ent�
 
 ## Lições Aprendidas
 
-- Manipular mapas e os elementos dentro de um mapa; 
+- Manipular mapas e os elementos dentro de um mapa;
 - Conseguir a localização do navegador da pessoa usuária;
 - Fazer brainstorms;
 - Organizar reuniões periódicas;
 - Organizar melhor branchs e commits.
-
