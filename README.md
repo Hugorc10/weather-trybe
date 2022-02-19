@@ -1,15 +1,14 @@
 <p align="center"><img src="./logoGif.gif" alt="Weather trybe logo"></p>
 
-Este projeto é um projeto bonus realizado por alunos da Trybe, o intuito do projeto era promover conhecimento sobre requisição em API's e funções Asíncronas!
+Este projeto é um projeto bonus realizado por alunos da Trybe, o intuito do projeto era promover conhecimento sobre requisição em API's e funções assíncronas!
 
-Tivemos a ideia de fazer um site que pudesse entregar informações em tempo real sobre o clima e informações que ajudassem a região, facilitando uma viajem, por exemplo.
+Tivemos a ideia de fazer um site que pudesse entregar informações em tempo real sobre o clima e informações que ajudam a indentificar a região.
 
-Aqui você vai encontrar os detalhes sobre o desenvolvimento do projeto, habilidades envolvidas no desenvolvimento e lições aprendidas durante o processo
+Aqui você vai encontrar os detalhes sobre o desenvolvimento do projeto, habilidades envolvidas no desenvolvimento e lições aprendidas durante o processo.
 
 ---
 
 <p align="center"><img src="./working.gif" alt="web site working"></p>
-
 
 ---
 
