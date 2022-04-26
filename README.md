@@ -29,7 +29,7 @@ Aqui você vai encontrar os detalhes sobre o desenvolvimento do projeto, habilid
 
 ### Hard Skills
 
-- Fazer requisições a uma API *(Application Programming Interface)* do Mercado Livre;
+- Fazer requisições a uma API *(Application Programming Interface)*;
 - Utilizar conhecimentos sobre JavaScript, CSS e HTML;
 - Trabalhar com funções assíncronas;
 - Implementar testes unitários
