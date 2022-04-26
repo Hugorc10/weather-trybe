@@ -38,7 +38,7 @@ Aqui você vai encontrar os detalhes sobre o desenvolvimento do projeto, habilid
 
 - Negociação
 - Escuta Ativa
-- Comunicação Acertiva
+- Comunicação Assertiva
 
 ---
 
